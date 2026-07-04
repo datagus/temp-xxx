@@ -1,0 +1,103 @@
+VARIABLE DESCRIPTIONS – Survey Data (survey_data_stats.csv)
+=============================================================
+
+Variable          | Type        | Description & Values
+------------------|-------------|------------------------------------------------------
+happy1            | Numeric     | "How happy are you?" Rated 0–10 (0 = not happy,
+                  |             |  10 = hyper happy). Measured at start of tutorial.
+
+id                | Character   | Student identifier. First 5 letters of the street
+                  |             | they grew up on + house number.
+
+tutorial_batch    | Numeric     | Tutorial slot number (1–6), corresponding to:
+                  |             |  1 = C11.308 | 2 = C14.203 | 3 = C11.320
+                  |             |  4 = C12.010 | 5 = C11.319 | 6 = C5.325
+
+time              | Numeric     | Time of tutorial slot (derived from tutorial_batch).
+
+major             | Categorical | Student's major program
+
+travel            | Numeric     | Distance traveled today to reach the classroom (km).
+
+direction         | Categorical | Direction traveled from home to classroom.
+                  |             |  Values: N, NE, NW, S, SE, SW, W, E
+
+born              | Numeric     | Distance to the student's place of birth (km).
+
+sports            | Numeric     | Hours of sports per week.
+
+aware             | Categorical | How the student feels at the time of the survey.
+                  |             |  Values: energized, awake, tired, drowsy
+
+morning_drink     | Categorical | Favourite morning drink (free-text entry).
+morning_drink2    | Categorical | Recoded version of morning_drink.
+morning_drink_cat | Categorical | Categorized morning drink.
+                  |             |  Values: Coffee, Tea, Water, Chocolate, Other
+
+breakfast         | Categorical | Does the student usually have breakfast?
+                  |             |  Values: yes, no
+
+sleep             | Numeric     | Average hours of sleep per night in the past month
+                  |             |  (1–10 scale).
+
+siblings          | Categorical | Does the student have any siblings?
+                  |             |  Values: yes, no
+
+siblings_number   | Numeric     | Number of siblings (brothers and sisters).
+
+pets              | Numeric     | Number of pets the student had growing up.
+
+beer              | Numeric     | Number of foreign languages in which the student
+                  |             | can order a beer without hesitating (0–10).
+
+coffee            | Numeric     | Number of foreign languages in which the student
+                  |             | can order a coffee without hesitating (0–10).
+
+pineapple_pizza   | Categorical | Opinion on pineapple as a pizza topping.
+                  |             |  Values: yes, no, do_not_mind
+
+pinky             | Numeric     | Length of the student's pinky finger (cm).
+
+os                | Categorical | Preferred operating system.
+                  |             |  Values: apple, microsoft
+
+hand              | Numeric     | Distance between thumb and pinky finger, fully
+                  |             | spread (cm).
+
+energy            | Numeric     | Perceived remaining energy for the day.
+                  |             |  0–10 scale (0 = 0%, 10 = 100%).
+
+shoes             | Numeric     | Number of pairs of shoes owned.
+
+phone             | Numeric     | Phone display size, diagonal measurement (cm).
+
+apartment_size    | Numeric     | Total size of current apartment (m²), all rooms.
+
+rooms             | Numeric     | Number of roommates (0–6+).
+
+apps              | Numeric     | Number of apps self-installed on phone.
+
+countries         | Numeric     | Number of countries traveled to.
+
+cb                | Categorical | Does the student like the Central Building
+                  |             | at Leuphana University?
+                  |             |  Values: yes, no
+
+food_money        | Numeric     | Estimated monthly spending on food (€).
+
+season            | Categorical | Favourite season.
+                  |             |  Values: spring, summer, fall, winter
+
+drink_coffee      | Categorical | How the student drinks their coffee.
+                  |             |  Values: with sugar, with milk,
+                  |             |          with sugar and milk, only black coffee,
+                  |             |          other
+
+height            | Numeric     | Student height (cm).
+
+bother            | Numeric     | How much a set of pictures bothers the student.
+                  |             |  1–10 scale (1 = nothing wrong, 10 = heart attack).
+
+happy2            | Numeric     | "How happy are you now?" Rated 0–10
+                  |             |  (0 = not happy, 10 = hyper happy).
+                  |             |  Measured at end of tutorial.
