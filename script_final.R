@@ -13,6 +13,7 @@ df <- read.csv("survey_data_stats.csv")
 # 1. DATA INSPECTION
 # =============================================================================
 
+#Inspect the data, check for missing values, check the data formats, check that the data is clean
 dim(df)
 str(df)
 summary(df)
@@ -22,14 +23,12 @@ tail(df)
 # Missing values per column
 colSums(is.na(df))
 
-# Factor levels for key categorical variables. 
-# This is a shortcut for converting categorical variables into factor
-
-
 # =============================================================================
 # 2. DATA EXPLORATION – GRAPHS
 # =============================================================================
 
+# Explore the data by running histograms, boxplots, barplots and scatterplots
+# For the advanced students, create a scatter plot matrices
 par(mfrow = c(2, 3))
 
 hist(df$happy1,          main = "Happiness (before)", xlab = "happy1",         col = "steelblue")
@@ -59,31 +58,21 @@ pairs(df[, numeric_vars], main = "Scatterplot Matrix", pch = 16, col = "steelblu
 barplot(table(df$morning_drink_cat), main = "Morning Drink",
         col = rainbow(length(levels(df$morning_drink_cat))), las = 2)
 
-# Correlation heatmap
-cor_matrix <- cor(df[, numeric_vars], use = "complete.obs")
-image(1:ncol(cor_matrix), 1:nrow(cor_matrix), cor_matrix,
-      axes = FALSE, main = "Correlation Matrix",
-      col = colorRampPalette(c("tomato", "white", "steelblue"))(50))
-axis(1, at = 1:ncol(cor_matrix), labels = colnames(cor_matrix), las = 2, cex.axis = 0.7)
-axis(2, at = 1:nrow(cor_matrix), labels = rownames(cor_matrix), las = 2, cex.axis = 0.7)
-
-
 # =============================================================================
 # 3. DATA ANALYSIS
 # =============================================================================
 
 # ── 3.1 T-TEST ──────────────────────────────────────────────────────────────
-# Two-sample: happy1 by major
 # Is there a difference in happiness between major groups?
 t.test(happy1 ~ major, data = df)
 
-# Was there a difference in happiness before and after completing the survey?
+# Is there a difference in happiness before and after completing the survey?
 t.test(df$happy1, df$happy2, paired = TRUE)
 
 
 # ── 3.2 CHI-SQUARE ──────────────────────────────────────────────────────────
-# Are the the different awareness status related to the morning drink?
-# select only the coffee, tea and water beverages
+# Are the the different awareness status related to the morning drink? 
+# Select only the coffee, tea and water beverages
 df2 <- subset(df, df$morning_drink_cat %in% c("coffee", "tea", "water"))
 table(df2$aware, df2$morning_drink_cat)
 chisq.test(table(df2$aware, df2$morning_drink_cat))
@@ -108,12 +97,13 @@ chisq.test(df2$morning_drink_cat, df2$pineapple_pizza)
 # 
 # happy1 vs sleep; happy1 vs heigth, sleep vs energy, happy1 vs bother
 # recommended: run a sunflowerplot()
+# Don't forget to check the pre-conditions for the different correlation tests
 cor.test(df$happy1, df$sleep)
 sunflowerplot(df$happy1, df$sleep)
 abline(lm( df$sleep~df$happy1))
 cor.test(df$happy1, df$height)
 sunflowerplot(df$happy1, df$height)
-abline(lm(df$height~df$sleep))
+abline(lm(df$height~df$happy1))
 cor.test(df$sleep,  df$energy)
 sunflowerplot(df$happy1, df$energy)
 abline(lm(df$energy~df$sleep))
@@ -121,7 +111,7 @@ abline(lm(df$energy~df$sleep))
 # Spearman (ordinal / non-normal)
 cor.test(df$happy1, df$bother, method = "spearman")
 
-# Full correlation matrix with p-values
+# For the advanced students run a full correlation matrix with p-values
 cor_p <- function(data) {
   vars  <- colnames(data)
   n     <- ncol(data)
@@ -141,12 +131,12 @@ print(round(cor_results$p, 3))
 
 
 # ---------3.4 ANALYSIS OF VARIANCE------------
+# # Don't forget to check the pre-conditions
 # 
 # How much % of the variation in the average of hours of sleep per night is explained by the morning drink?
 aov1 <- aov(sleep ~ morning_drink_cat, data = df2)
 summary(aov1)
 TukeyHSD(aov1)
-
 
 # Do season and breakfast have a significant effect on the happiness before completing the survey?
 aov2 <- aov(happy1 ~ season*breakfast, data = df)
@@ -158,7 +148,8 @@ aov3 <- aov(happy1 ~ major* breakfast * siblings, data = df)
 summary(aov3)
 
 # ── 3.5 LINEAR (MULTIPLE) REGRESSION ────────────────────────────────────────
-# Predict happy2 from numeric predictors only
+# Run a linear regression model to predict happy2 from numeric predictors only
+# # Don't forget to check the pre-conditions and evaluate ther residuals
 model_lm <- lm(happy2 ~ happy1 + sleep + height + food_money +
                  apartment_size + sports + energy,
                data = df)
