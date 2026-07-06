@@ -61,8 +61,9 @@ df <- read.csv("survey_data_stats.csv")
 # Which of the following variable pairs are significantly correlated?
 # 
 # happy1 vs sleep; happy1 vs heigth, sleep vs energy, happy1 vs bother
-# recommended: run a sunflowerplot()
+
 # Don't forget to check the pre-conditions for the different correlation tests
+# Recommendation: Create a scatter plot with the tendency line (abline function)
 
 
 #Your code here
@@ -192,9 +193,20 @@ print(aic.table,digits=4,LL=TRUE)
 
 
 # ── 4.1 PCA ─────────────────────────────────────────────────────────────────
-# Principal Component Analysis 
+# Principal Component Analysis
+# 
+# Note: You are not expected to compute/code a PCA in the exam
+#  
 # 
 # Subselect the dataframe considering only the numeric variables. 
+# 
+pca_vars <- c("happy1", "hand", "...")
+
+pca_data <- df[, pca_vars]
+
+# Run the PCA
+
+
 # Which of the variables are correlated and redudant?
 # Which of the variables are negative correlated?
 # What are the two principal compoments showing?
@@ -209,6 +221,9 @@ print(aic.table,digits=4,LL=TRUE)
 
 
 # ── 4.2 (DETRENDED) CORRESPONDENCE ANALYSIS ──────────────────────────────────────────────
+# Note: You are not expected to compute/code a PCA in the exam
+#  
+#
 # Take heigth as factor
 # Create a contingency table with that variable and morning_drink_cat
 # Run both a correspondence analysis and detretended correspondence 
